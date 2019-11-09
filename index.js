@@ -17,7 +17,7 @@ const cacheResetUrl = process.env.CACHE_RESET_URL;
   } catch (e) {
     console.log(e.name + ": " + e.message);
     console.log(`Not found ${selector} selector. Resetting cache the page...`);
-    axios.post(cacheResetUrl, { text: "cache clear", suppress: true });
+    axios.post(cacheResetUrl, { text: "cache clear", robot: true });
   } finally {
     await browser.close();
   }
