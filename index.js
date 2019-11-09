@@ -9,12 +9,13 @@ const cacheResetUrl = process.env.CACHE_RESET_URL;
   });
   const page = await browser.newPage();
   await page.goto("https://design-ship.jp/");
-  const selector = "#__layout .containe";
+  const selector = "#__layout .container";
   try {
     await page.waitForSelector(selector, {
       timeout: 10000
     });
   } catch (e) {
+    console.log(e.name + ": " + e.message);
     console.log(`Not found ${selector} selector. Resetting cache the page...`);
     axios.post(cacheResetUrl, { text: "cache clear", suppress: true });
   } finally {
